@@ -598,4 +598,6 @@ def delete_intervention(intervention_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Intervention supprimee"}
 
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+import os
+if os.path.exists("../frontend"):
+    app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
