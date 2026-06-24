@@ -9,7 +9,7 @@ DATABASE_URL = os.getenv('DATABASE_URL') or (
     f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 )
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, connect_args={"options": "-c AddressFamily=inet"})
 SessionLocal = sessionmaker(bind=engine)
 
 def get_db():
